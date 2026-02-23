@@ -23,6 +23,6 @@ export class ProductService {
       );
     }
     console.info("Appel: GET /v1/products Response:", results)
-    return of(results).pipe(delay(300));
+    return of(results).pipe(delay(Math.random() * 300));
   }
 }
