@@ -1,0 +1,15 @@
+
+<mat-form-field class="w-full">
+  <mat-label>Rechercher</mat-label>
+<input matInput [formControl]="searchControl" placeholder="Rechercher un produit..." />
+</mat-form-field>
+<mat-list class="w-full">
+  @for (product of filteredProducts| async; track product){
+  <mat-list-item>
+    {{ product.name }} - {{ product.price | currency:'EUR' }}
+    <button matIconButton (click)="addToCart(product)" matListItemMeta aria-label="Ajouter au panier">
+      <mat-icon>add_shopping_cart</mat-icon>
+    </button>
+  </mat-list-item>
+  }
+</mat-list>
