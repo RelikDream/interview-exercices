@@ -1,0 +1,26 @@
+version: 1.0
+configuration:
+  has_webserver: true
+  scoring:
+    command: npm install --silent && npm test
+    files:
+      - unit.xml
+    # Define hidden test cases and declare file paths below to evaluate candidates' submissions.
+    #
+    # Learn more:
+    # https://support.hackerrank.com/hc/en-us/articles/4761491631635-Hidden-Test-Cases-for-Front-End-Back-End-and-Full-Stack-Questions
+    #
+    # hidden_files_paths:
+    #   - tests/custom_test_[1-2].sh
+    #   - app/secret_test
+  readonly_paths:
+    - src/app/app.spec.ts
+    - src/app/core/product.service.ts
+    - src/app/pages/product-list/product-list.page.spec.ts
+  ide_config:
+    default_open_files:
+      - README.md
+    project_menu:
+      run: npm start
+      install: npm install --silent
+      test: npm test
