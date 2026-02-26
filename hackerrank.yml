@@ -17,6 +17,9 @@ configuration:
     - src/app/app.spec.ts
     - src/app/core/product.service.ts
     - src/app/pages/product-list/product-list.page.spec.ts
+    - package.json
+    - package-lock.json
+    - angular.json
   ide_config:
     default_open_files:
       - README.md

@@ -68,7 +68,7 @@
         "test": {
           "builder": "@angular/build:unit-test",
           "options": {
-            "reporters": ["junit"],
+            "reporters": ["default","junit"],
             "outputFile": "unit.xml"
           }
         }
