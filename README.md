@@ -1,15 +1,68 @@
-# Zenika angular interview
-## Context
-Nous developpons une solution ecommerce de materiel informatique
-Aujourd'hui nous avons un mvp qui présente différent bugs:
+# Zenika — Entretien technique Angular
 
-1. le clique sur ajouter au panier ne met pas a jour le compteur dans la barre de navigation
-2. la recherche de produit semble ératique
+## Contexte
 
-Nous voulons dans un premier temp corriger ces deux bugs
+Vous intégrez l'équipe qui développe une solution e-commerce de matériel informatique.
+Un MVP est déjà en place : les utilisateurs peuvent parcourir un catalogue de produits, les rechercher et les ajouter à leur panier.
 
-Ensuite si le temps nous le permet nous aimerions ajouter la fonctionalité suivante
-1. En tant que __Client__, j'aimerai pouvoir rajouter via un formulaire __réactif__ un article non présent dans le formulaire. Le bouton d'ajout au panier devra être **desactivé** tant que que le nom du produit ne comportera aucun caractère visible.
-2. Lors de l'ajout nous voulons retirer tout les eventuels caractère blancs ajoutés par erreur en debut et fin du nom du produit.
-2. En tant que client , lorsque je clique sur le panier je voudrai être redirigé sur une page de resumé du panier affichant le resumé de mon panier ainsi que son coup final
-3. je voudrais aussi avoir une page de description du produit au clique sur ce dernier
+Malheureusement, deux bugs ont été remontés en production. Votre mission est de les corriger, puis d'implémenter de nouvelles fonctionnalités si le temps vous le permet.
+
+## Démarrage
+
+```bash
+npm install
+npm start        # http://localhost:4200
+npm run test     # lancer la suite de tests
+```
+
+Les tests sont votre principal indicateur de progression : **3 tests sont en échec au départ**, ils doivent tous passer au vert.
+
+---
+
+## Partie 1 — Correction de bugs (prioritaire)
+
+### Bug 1 — Le compteur panier ne se met pas à jour
+
+Quand l'utilisateur clique sur « Ajouter au panier », le compteur affiché dans la barre de navigation reste à zéro.
+
+**Comportement attendu** : le compteur doit refléter en temps réel le nombre d'articles ajoutés au panier.
+
+### Bug 2 — La recherche de produits est erratique
+
+Les résultats affichés lors d'une frappe rapide sont parfois incorrects : des produits inattendus apparaissent ou des résultats semblent appartenir à une recherche précédente.
+
+**Comportement attendu** : les résultats affichés doivent toujours correspondre au terme de recherche le plus récent saisi par l'utilisateur.
+
+---
+
+## Partie 2 — Nouvelles fonctionnalités (si le temps le permet)
+
+Les fonctionnalités suivantes sont exprimées sous forme de user stories, dans l'ordre de priorité.
+
+### 1. Ajout d'un produit personnalisé
+
+> En tant que client, je veux pouvoir ajouter au panier un article qui n'est pas dans le catalogue, en saisissant son nom via un formulaire.
+
+- Le bouton d'ajout doit être **désactivé** tant que le nom ne contient aucun caractère visible
+
+### 2. Page récapitulatif du panier
+
+> En tant que client, je veux pouvoir consulter le contenu de mon panier en cliquant sur l'icône panier dans la barre de navigation.
+
+- La page doit lister les articles ajoutés
+- Elle doit afficher le coût total du panier
+
+### 3. Page de détail produit
+
+> En tant que client, je veux accéder à la page de détail d'un produit en cliquant dessus dans la liste.
+
+---
+
+## Stack technique
+
+| Outil | Version |
+|-------|---------|
+| Angular | 21 |
+| Angular Material | — |
+| RxJS | — |
+| Vitest | — |
