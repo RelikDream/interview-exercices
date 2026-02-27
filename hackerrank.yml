@@ -10,9 +10,8 @@ configuration:
     # Learn more:
     # https://support.hackerrank.com/hc/en-us/articles/4761491631635-Hidden-Test-Cases-for-Front-End-Back-End-and-Full-Stack-Questions
     #
-    # hidden_files_paths:
-    #   - tests/custom_test_[1-2].sh
-    #   - app/secret_test
+    hidden_files_paths:
+      - INTERVIEW_GUIDELINES.md
   readonly_paths:
     - src/app/app.spec.ts
     - src/app/core/product.service.ts
