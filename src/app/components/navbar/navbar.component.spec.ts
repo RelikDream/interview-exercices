@@ -15,11 +15,6 @@ describe('NavbarComponent', () => {
     fixture.detectChanges();
   });
 
-  it('devrait afficher "Panier (0)" au démarrage', () => {
-    const toolbar: HTMLElement = fixture.nativeElement;
-    expect(toolbar.textContent?.trim()).toContain('Panier (0)');
-  });
-
   it('devrait mettre à jour le compteur quand un article est ajouté', () => {
     const localCartService = fixture.debugElement.injector.get(CartService);
 

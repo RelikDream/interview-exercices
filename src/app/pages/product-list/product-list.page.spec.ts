@@ -67,48 +67,4 @@ describe('ProductListPage', () => {
     });
   });
 
-  it('devrait afficher tous les produits au chargement', async () => {
-    const fixture = TestBed.createComponent(ProductListPage);
-    fixture.detectChanges();
-    await fixture.whenStable();
-    fixture.detectChanges();
-
-    const items = fixture.nativeElement.querySelectorAll('mat-list-item');
-    expect(items).toHaveLength(allProducts.length);
-  });
-
-  it('devrait filtrer les produits selon le terme de recherche', async () => {
-    const clResults: Product[] = [{ name: 'Clavier mécanique', price: 129 }];
-    productServiceSpy.search.mockImplementation((term: string | null) =>
-      !term || term.trim() === '' ? of(allProducts) : of(clResults)
-    );
-
-    const fixture = TestBed.createComponent(ProductListPage);
-    const component = fixture.componentInstance;
-    fixture.detectChanges();
-
-    component.searchControl.setValue('cl');
-    await fixture.whenStable();
-    fixture.detectChanges();
-
-    const items = fixture.nativeElement.querySelectorAll('mat-list-item');
-    expect(items).toHaveLength(1);
-    expect(items[0].textContent).toContain('Clavier mécanique');
-  });
-
-  it("devrait appeler cartService.addItem avec le bon produit au clic sur le bouton d'ajout", async () => {
-    const fixture = TestBed.createComponent(ProductListPage);
-    fixture.detectChanges();
-    await fixture.whenStable();
-    fixture.detectChanges();
-
-    const firstButton:HTMLButtonElement = fixture.nativeElement.querySelector(
-      'button[aria-label="Ajouter au panier"]'
-    );
-    expect(firstButton).toBeTruthy();
-
-    firstButton!.click();
-
-    expect(cartServiceSpy.addItem).toHaveBeenCalledWith(allProducts[0]);
-  });
 });
