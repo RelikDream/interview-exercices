@@ -1,5 +1,5 @@
-import {Component, OnInit, OnDestroy, ChangeDetectionStrategy} from '@angular/core';
-import {FormControl, ReactiveFormsModule} from '@angular/forms';
+import {Component, OnInit, OnDestroy, ChangeDetectionStrategy, inject} from '@angular/core';
+import {FormBuilder, FormControl, ReactiveFormsModule, Validators} from '@angular/forms';
 import {BehaviorSubject, startWith, Subject} from 'rxjs';
 import {CartService} from '../../core/cart.service';
 import {ProductService} from '../../core/product.service';
@@ -9,7 +9,7 @@ import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {MatList, MatListItem} from '@angular/material/list';
 import {MatFormField, MatInput, MatLabel} from '@angular/material/input';
 import {MatIcon} from '@angular/material/icon';
-import {MatIconButton} from '@angular/material/button';
+import {MatButton, MatIconButton} from '@angular/material/button';
 
 @Component({
   selector: 'app-product-list',
@@ -24,14 +24,20 @@ import {MatIconButton} from '@angular/material/button';
     MatInput,
     MatIcon,
     MatIconButton,
-    AsyncPipe
+    AsyncPipe,
+    MatButton
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductListPage {
   readonly searchControl = new FormControl('');
   private readonly _filteredProducts = new BehaviorSubject<Product[]>([]);
-  readonly filteredProducts = this._filteredProducts.asObservable();
+  readonly filteredProducts =  this.searchControl.valueChanges
+  private readonly fb = inject(FormBuilder)
+  readonly formControl = this.fb.group({
+    product:['',Validators.required],
+    price:  [0, [Validators.required,Validators.min(0)]]
+  })
 
   constructor(
     private cartService: CartService,

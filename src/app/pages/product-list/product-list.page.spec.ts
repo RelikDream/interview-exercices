@@ -1,10 +1,12 @@
-import {TestBed} from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {TestScheduler} from 'rxjs/testing';
 import {of} from 'rxjs';
 import {ProductListPage} from './product-list.page';
 import {ProductService} from '../../core/product.service';
 import {CartService} from '../../core/cart.service';
 import {Product} from '../../model/product';
+import {By} from '@angular/platform-browser';
+import {FormControl, FormGroup, FormGroupDirective} from '@angular/forms';
 
 describe('ProductListPage', () => {
   let scheduler: TestScheduler;
@@ -111,4 +113,40 @@ describe('ProductListPage', () => {
 
     expect(cartServiceSpy.addItem).toHaveBeenCalledWith(allProducts[0]);
   });
+
+  describe('Ajout produit personnalisé',()=> {
+    let fixture:ComponentFixture<ProductListPage>;
+
+    beforeEach(()=> {
+       fixture = TestBed.createComponent(ProductListPage);
+      fixture.detectChanges();
+    })
+    it('devrait avoir créé un formulaire reactif',()=> {
+      const form =  fixture.debugElement.query(By.css('form'));
+      expect(form).toBeDefined();
+      const formGroup = form.injector.get(FormGroupDirective)
+      expect(formGroup).toBeDefined();
+
+      expect(formGroup.form.contains("product")).toBeTruthy();
+      expect(formGroup.form.contains("price")).toBeTruthy();
+    })
+/*
+    describe('submit',()=>{
+      let submitButton:HTMLButtonElement;
+      let priceField:HTMLInputElement;
+      let productField:HTMLInputElement;
+
+      beforeEach(()=> {
+        const form =  fixture.debugElement.query(By.css('form'));
+        submitButton = form.nativeElement.querySelector("button[type=\"submit\"]");
+        priceField = form.nativeElement.querySelector("input[name=\"price\"]");
+        productField = form.nativeElement.querySelector("input[name=\"product\"]");
+      })
+      it('should be disabled if product field is void',()=>{
+        fixture.
+      })
+    })
+
+ //*/
+  })
 });
