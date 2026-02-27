@@ -23,6 +23,6 @@ configuration:
     default_open_files:
       - README.md
     project_menu:
-      run: npm start
+      run: npm install --silent && npm start
       install: npm install --silent
       test: npm test
